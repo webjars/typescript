@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>typescript</artifactId>
-    <version>0.9.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>TypeScript</name>
     <description>WebJar for TypeScript</description>
     <url>http://webjars.org</url>
@@ -41,9 +41,9 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>0.9.0</upstream.version>
+        <upstream.version>1.0.1</upstream.version>
         <upstream.url>http://download-codeplex.sec.s-msft.com/Download</upstream.url>
-        <upstream.changeset>db36741742cc21bb85f231d89ef1559644a8694e</upstream.changeset>
+        <upstream.changeset>4a1d31110576</upstream.changeset>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     </properties>
     
@@ -91,7 +91,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatype-nexus-staging</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
