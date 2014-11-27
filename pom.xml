@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>typescript</artifactId>
-    <version>1.1.0.1-SNAPSHOT</version>
+    <version>1.1.0.1</version>
     <name>TypeScript</name>
     <description>WebJar for TypeScript</description>
     <url>http://webjars.org</url>
@@ -36,7 +36,7 @@
         <url>http://github.com/webjars/typescript</url>
         <connection>scm:git:https://github.com/webjars/typescript.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/typescript.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>typescript-1.1.0.1</tag>
     </scm>
     
     <properties>
