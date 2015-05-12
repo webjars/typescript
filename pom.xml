@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
-    <artifactId>typescript</artifactId>
-    <version>1.5-SNAPSHOT</version>
-    <name>TypeScript</name>
-    <description>WebJar for TypeScript</description>
+    <artifactId>typescript-parent</artifactId>
+    <version>1.5.0-beta-SNAPSHOT</version>
+    <name>TypeScript Parent</name>
+    <description>WebJar for TypeScript Parent</description>
     <url>http://webjars.org</url>
 
     <developers>
@@ -26,8 +26,8 @@
 
     <licenses>
         <license>
-            <name>Apache License 2.0</name>
-            <url>http://typescript.codeplex.com/license</url>
+            <name>Apache v2.0</name>
+            <url>https://github.com/Microsoft/TypeScript/blob/master/LICENSE.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -38,14 +38,20 @@
         <developerConnection>scm:git:https://github.com/webjars/typescript.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>1.4</upstream.version>
-        <upstream.url>https://github.com/Microsoft/TypeScript/archive</upstream.url>
-        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
+        <upstreamVersion>1.5.0-beta</upstreamVersion>
+        <sourceUrl>http://registry.npmjs.org/typescript/-/</sourceUrl>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
+        <extractDir>${project.build.directory}/typescript.js-${upstreamVersion}</extractDir>
     </properties>
-    
+
+    <modules>
+        <module>node</module>
+        <module>web</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>
@@ -54,15 +60,13 @@
                 <version>1.0-beta-4</version>
                 <executions>
                     <execution>
-                        <id>download-zip</id>
+                        <id>download-js</id>
                         <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
+                        <goals><goal>download-single</goal></goals>
                         <configuration>
-                            <url>${upstream.url}</url>
-                            <fromFile>v${upstream.version}.zip</fromFile>
-                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
+                            <url>${sourceUrl}</url>
+                            <fromFile>typescript-${upstreamVersion}.tgz</fromFile>
+                            <toFile>${project.build.directory}/typescript.tgz</toFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -74,13 +78,13 @@
                 <executions>
                     <execution>
                         <phase>process-resources</phase>
+                        <id>unzip</id>
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
                                 <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
-                                <echo message="moving resources" />
-                                <move todir="${destDir}" file="${project.build.directory}/TypeScript-${upstream.version}/bin" />
+                                <gunzip src="${project.build.directory}/typescript.tgz" dest="${project.build.directory}/typescript.tar" />
+                                <untar src="${project.build.directory}/typescript.tar" dest="${extractDir}" />
                             </target>
                         </configuration>
                     </execution>
@@ -106,5 +110,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
