@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.webjars</groupId>
         <artifactId>typescript-parent</artifactId>
-        <version>1.5.0-beta</version>
+        <version>1.5.1-beta-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
