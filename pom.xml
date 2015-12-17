@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>typescript-parent</artifactId>
-    <version>1.7.5-SNAPSHOT</version>
+    <version>1.7.5</version>
     <name>TypeScript Parent</name>
     <description>WebJar for TypeScript Parent</description>
     <url>http://webjars.org</url>
@@ -36,7 +36,7 @@
         <url>http://github.com/webjars/typescript</url>
         <connection>scm:git:https://github.com/webjars/typescript.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/typescript.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>typescript-parent-1.7.5</tag>
     </scm>
 
     <properties>
